@@ -2,8 +2,14 @@
 // http://www.thingiverse.com/thing:63674
 
 include <configuration.scad>;
+include <threads.scad>;
 
 filament_offset = 22.5;
+
+FILAMENT_MOUNT_DIAMETER = 10;
+FILAMENT_MOUNT_HEIGHT = 12;
+FILAMENT_MOUNT_PITCH = 1;  // thread pitch, set to -1 to disable
+
 
 module extruder() {
   rotate([90, 0, 0]) difference() {
@@ -15,8 +21,8 @@ module extruder() {
       translate([31,20,21]) rotate([90,0,0]) cylinder (h=20, r=8);
 
       //pushfit/pneufit mount
-      translate([filament_offset, 6.5, 13])
-        cylinder(r=7.5, h=20, center=true, $fn=6);
+      translate([filament_offset, 6.5, 8 - FILAMENT_MOUNT_HEIGHT])
+        cylinder(r=7.5, h=15 + FILAMENT_MOUNT_HEIGHT, $fn=6);
 
       //filament support
       translate([21.75,6.5,34]) rotate([0,0,0]) cylinder (h=8, r=3, $fn=12);
@@ -70,7 +76,13 @@ module extruder() {
       cylinder(h=60, r=1.1, $fn=12);
 
     //pushfit/pneufit mount
-    translate([filament_offset, 6.5, 0]) # cylinder(r=2.3, h=8, $fn=12);
+    translate([filament_offset, 6.5, 5 - FILAMENT_MOUNT_HEIGHT])
+        if (FILAMENT_MOUNT_PITCH < 0)
+            # cylinder(d=FILAMENT_MOUNT_DIAMETER, h=3 + FILAMENT_MOUNT_HEIGHT, $fn=12);
+        else
+            #metric_thread(diameter=FILAMENT_MOUNT_DIAMETER,
+                    pitch=FILAMENT_MOUNT_PITCH, length=3 + FILAMENT_MOUNT_HEIGHT,
+                    internal=true);
 
     //clamp slit
     translate([25,-1,10]) cube([2, 22, 35]);
