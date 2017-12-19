@@ -6,7 +6,7 @@ include <threads.scad>;
 
 filament_offset = 22.5;
 
-FILAMENT_MOUNT_DIAMETER = 10;
+FILAMENT_MOUNT_DIAMETER = 10 + 0.7;
 FILAMENT_MOUNT_HEIGHT = 12;
 FILAMENT_MOUNT_PITCH = 1;  // thread pitch, set to -1 to disable
 
