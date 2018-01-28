@@ -12,7 +12,8 @@ FILAMENT_MOUNT_PITCH = 1;  // thread pitch, set to -1 to disable
 
 SUPPORT = false;
 
-FN = 10;
+FN = 250;
+$fn = FN;
 
 
 module extruder() {
