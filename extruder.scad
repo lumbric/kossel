@@ -10,6 +10,8 @@ FILAMENT_MOUNT_DIAMETER = 10 + 0.7;
 FILAMENT_MOUNT_HEIGHT = 12;
 FILAMENT_MOUNT_PITCH = 1;  // thread pitch, set to -1 to disable
 
+SUPPORT = false;
+
 FN = 10;
 
 
@@ -65,7 +67,9 @@ module extruder() {
       }
       //removable supports
       for (z = [15:3:27]) {
-        translate([36, 10, z]) # cube([20, 20, 0.5], center=true);
+        if (SUPPORT) {
+            translate([36, 10, z]) # cube([20, 20, 0.5], center=true);
+        }
       }
     }
 
