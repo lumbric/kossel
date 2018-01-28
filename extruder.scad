@@ -60,10 +60,10 @@ module extruder() {
     //bearing
     difference() {
       union() {
-        translate([31,9.5,21]) rotate([90,0,0]) cylinder (h=5.25, r=8.5);
-        translate([31,9.5-5.25,21-8.25-2]) cube([20, 5.25, 18.5]);
+        translate([31,9.5,21]) rotate([90,0,0]) cylinder (h=5.65, r=8.5);
+        translate([31,9.5-5.65,21-8.25-2]) cube([20, 5.65, 18.5]);
         //opening between bearing and pulley
-        translate([20,9.5-5.25,21-8.25+3.25+1]) cube([10, 5.25, 8]);
+        translate([20,9.5-5.65,21-8.25+3.25+1]) cube([10, 5.65, 8]);
       }
       //removable supports
       for (z = [15:3:27]) {
